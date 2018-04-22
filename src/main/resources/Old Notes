@@ -1,0 +1,92 @@
+Tencup notes
+
+Fundamentals
+10 cups on each side, 20 total
+2 teams, 2 players each
+
+
+Racks
+10-rack
+
+7 8 9 10
+ 4 5 6
+  2 3
+   1
+   
+6-rack
+
+4 5 6
+ 2 3
+  1
+  
+4-rack
+
+ 4
+2 3
+ 1
+
+3-rack
+
+2 3
+ 1
+ 
+2-rack
+ 
+2
+1
+
+1-rack
+
+1
+
+
+
+
+Rules/Specials
+Eye-to-eye begins the game
+Each team alternates taking 2 shots
+Bringbacks
+Heating up / fire [Player _ is heating up / on fire]
+Islands/Terraforming [Terraformed! Island formed on Cup _]
+Redemption
+Double sink/kill
+
+Data structures
+Array of booleans (true=made cup, false=non-made cup)
+
+
+Functions
+isIsland()
+
+Prototype 1: Java program
+
+I: Enter names of Team 1 players, enter names of Team 2 players.
+I: Enter winner of eye-to-eye, winner begins Round 1
+
+O: Round 1, Team 1's shot. [Player _ is heating up/on fire]
+[O: Will Team 1 take a _-rack? y/n]
+I: Enter player _'s initial, then a 0 if missed cup, or corresponding cup number (and I if called island) if made cup (Ex. A7I)
+O: [Result of shot]
+O: Round 1, Team 2's shot. [Player _ is heating up/on fire]
+[O: Will Team 2 take a _-rack? y/n]
+I: Enter other player's initial, then a 0 if missed cup, or corresponding cup number (and I if called island) if made cup (Ex. B4)
+O: [Result of shot]
+
+Possible results of a missed shot:
+
+Player "cools down"
+Player misses bringback opportunity
+Player loses redemption
+Player loses game
+
+Possible results of a made shot:
+
+Island is formed
+2 islands are formed
+Island is called and made: island and another chosen cup are removed
+Island is called but a different cup is made: no cups are removed
+Bringbacks occur
+Player heats up/catches fire/continues fire
+Player continues redemption
+Player snipes
+Player double-sinks/kills to win game
