@@ -1,0 +1,42 @@
+<html ng-app="codenamesApp">
+
+	<head>
+		<title>Codenames App</title>
+		<link rel="stylesheet" type="text/css" href="codenames.css">
+		<script src='angular.min.js'></script>
+		<script src='app.js'></script>
+	</head>
+	
+	<body>
+		<div ng-controller="CodenamesCtrl as ctrl">
+			<table class="codemastersTable">
+				<tbody>
+					<tr ng-repeat="list in ctrl.rowList">
+						<td ng-repeat="word in list">
+							<div class="square {{word.team}}">
+								<span></span>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<table class="guessersTable">
+				<tbody>
+					<tr ng-repeat="list in ctrl.rowList">
+						<td ng-repeat="word in list">
+							<div ng-class="{ '{{word.team}}': clicked}" ng-click="ctrl.revealButton(this)">
+								{{word.word}}
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<p>Current player: {{ctrl.currentTeam}}</p>
+		
+			
+		</div>
+	</body>
+
+</html>

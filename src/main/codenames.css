@@ -1,0 +1,38 @@
+.word {
+	width: 100px;
+	height: 30px;
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 10px;
+}
+
+.codemastersTable {
+	width: 1000px;
+	display: block;
+	color: white;
+}
+
+.red {
+	background-color: #aa0000c7;
+}
+
+.blue {
+	background-color: #0000aaad;
+}
+
+.brown {
+	background-color: #4044007d;
+}
+
+.black {
+	background-color: #000;
+}
+
+.square {
+	width: 10px;
+	height: 10px;
+	display: block;
+	color: white;
+	text-align: center;
+}
