@@ -2,14 +2,16 @@
 A collection of games to play with friends.
 
 # codenames
-A game of Codenames.
 
-Gameplay:
+When a new game is started:
 
-25 words are randomly selected from the word bank and are arranged in a 5x5 grid.
+1. 25 words are randomly selected from the word bank and are arranged in a 5x5 grid.
 
-The codemasters choose a grid layout card, which determines the colors of the words as well as the turn order.
+2. The codemasters choose a grid layout card, which determines the colors of the words as well as the turn order.
 
-The codemasters take turns giving one-word clues to their teams, and the teams choose the words they think correspond to the clues. 
+3. The codemasters take turns giving clues to their teams. A clue consists of a single word and a number. The guessing team can then begin choosing words one at a time until either:
 
-The game is over when one team has correctly guessed all their words, or one team has chosen the black card.
+  a. They guess a neutral card, an enemy card, or the black card.
+  b. They run out of guesses, where the number of guesses allowed is the clue number + 1.
+
+4. The game is over when one team has correctly guessed all their words, or one team has chosen the black card.
