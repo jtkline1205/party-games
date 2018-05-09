@@ -8,59 +8,67 @@
 	</head>
 	
 	<body>
-		<div ng-controller="CodenamesCtrl as ctrl">
-			<span>Wins | Red: {{ctrl.redWins}} | Blue: {{ctrl.blueWins}}</span>
-			<button ng-click="ctrl.startNewGame()">
-				New Game
-			</button>
-			<br/>
-			<span>{{ctrl.message}}</span>
-			<div>
-				<h3>Codemasters Grid</h3>
-				<button ng-click="ctrl.toggleCodemastersTable()" ng-hide="ctrl.showCodemastersTable">
-					Show
-				</button>
-				<button ng-click="ctrl.toggleCodemastersTable()" ng-show="ctrl.showCodemastersTable">
-					Hide
-				</button>
-				<br/>
-				<span ng-show="ctrl.showCodemastersTable">{{ctrl.firstTeam}}</span>
-				<table class="codemastersTable" ng-show="ctrl.showCodemastersTable">
-					<tbody>
-						<tr ng-repeat="list in ctrl.rowList">
-							<td ng-repeat="word in list">
-								<div class="square {{word.team}}">
-									<span></span>
-								</div>
-							</td>
-						</tr>
-					</tbody>
+		<div ng-controller="CodenamesCtrl as ctrl" class="center">
+			<h1>Codenames</h1>
+			<div class="gameStatus">
+				<table class="center">
+					<tr>	
+						<td>	
+							<button ng-click="ctrl.startNewRound()" class="newRoundButton">
+								<span class="redWins">{{ctrl.redWins}}</span>
+								<span class="blueWins">{{ctrl.blueWins}}</span>
+								<br/>
+								New Round
+							</button>
+						</td>
+						<td>
+							<button ng-click="ctrl.toggleCodemastersTable()" ng-hide="ctrl.showCodemastersTable" class="codemastersGridButton">
+								Show Codemasters Grid
+							</button>
+							<button ng-click="ctrl.toggleCodemastersTable()" ng-show="ctrl.showCodemastersTable" class="codemastersGridButton">
+								<table class="center" ng-show="ctrl.showCodemastersTable">
+									<tbody>
+										<tr>
+											<td class="firstTeamIndicator {{ctrl.firstTeam}}" colspan="5">	
+											</td>
+										</tr>
+										<tr ng-repeat="list in ctrl.rowList">
+											<td ng-repeat="word in list">
+												<div class="square {{word.team}}">
+													<span></span>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</button>
+						</td>							
+					</tr>
 				</table>
-			</div>
-			
-			<div>
-				<h3>Current Turn</h3>
-				<span>Team {{ctrl.currentTeam}}</span>
 				<br/>
+				<table class="center">
+					<tr>
+						<td class="teamIcon {{ctrl.currentTeam}}"></td>
+					</tr>
+				</table>
 				<input type="text" ng-model="ctrl.offeredClueWord" ng-hide="ctrl.clueSubmitted"/>
-				<input type="number" ng-model="ctrl.offeredClueNumber" ng-hide="ctrl.clueSubmitted"/>
+				<input type="number" class="clueNumberInput" ng-model="ctrl.offeredClueNumber" ng-hide="ctrl.clueSubmitted"/>
 				<button ng-click="ctrl.submitClue()" ng-hide="ctrl.clueSubmitted">Submit Clue</button>
+				<span ng-show="ctrl.clueSubmitted">{{ctrl.getSubmittedClue()}}</span>
 				<br/>
-				<span>{{ctrl.currentClueWord}} | {{ctrl.currentClueNumber}}</span>
-			</div>
-			
-			<div>
-				<h3>Word Grid</h3>
-				<br/>
-				<span>Words Left | Red: {{ctrl.redLeft}} | Blue: {{ctrl.blueLeft}}</span>
+				<span class="redWins">{{ctrl.redLeft}}</span>
+				<span class="blueWins">{{ctrl.blueLeft}}</span>
 				<br/>
 				<span ng-show="ctrl.clueSubmitted">Guesses remaining: {{ctrl.guessesRemaining}}</span>
 				<br/>
-				<table class="wordGrid">
+				{{ctrl.message}}
+			</div>
+			<div class="wordGridSection">
+				<table class="wordGrid center">
 					<tbody>
 						<tr ng-repeat="list in ctrl.rowList">
 							<td ng-repeat="word in list">
-								<div ng-class="{ '{{word.team}}': clicked}" ng-click="ctrl.revealButton(this, word)">
+								<div ng-class="{ '{{word.team}}': clicked}" class="word" ng-click="ctrl.revealButton(this, word)">
 									{{word.word}}
 								</div>
 							</td>

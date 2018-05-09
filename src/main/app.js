@@ -3,7 +3,11 @@ app.controller("CodenamesCtrl", CodenamesCtrl);
 
 function CodenamesCtrl() {	
 	initializeController(this);
-	
+
+	this.getSubmittedClue = function() {
+		return this.currentClueWord + "   |   " + this.currentClueNumber;
+	}
+
 	function initializeController(ctrl) {
 		ctrl.redWins = 0;
 		ctrl.blueWins = 0;
@@ -77,22 +81,22 @@ function CodenamesCtrl() {
 				ctrl.redWins++;
 				ctrl.message = "Red wins since blue guessed the black card!";
 			}
-			ctrl.startNewGame();
+			ctrl.startNewRound();
 		}
 		if (ctrl.redLeft == 0) {
 			ctrl.redWins++;
-			ctrl.startNewGame();
+			ctrl.startNewRound();
 			ctrl.message = "Red wins by guessing all words!";
 		} else if (ctrl.blueLeft == 0) {
 			ctrl.blueWins++;
-			ctrl.startNewGame();
+			ctrl.startNewRound();
 			ctrl.message = "Blue wins by guessing all words!";
 		} else if (ctrl.guessesRemaining == 0) {
 			switchTeams(ctrl);
 		}
 	}
 	
-	this.startNewGame = function() {
+	this.startNewRound = function() {
 		resetClues(this);
 		let wordBank = getWordBank();
 		let wordSet = new Set();
@@ -102,8 +106,7 @@ function CodenamesCtrl() {
 		this.rowList = generateRowListFromWordSet(this, wordSet);
 	}
 	
-	this.startNewGame();
-
+	this.startNewRound();
 	
 	function generateRowListFromWordSet(ctrl, wordSet) {
 		let counter = 0;
