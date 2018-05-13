@@ -20,7 +20,7 @@ When a new game is started:
 
 When a new game is started:
 
-1. Both the red and blue player are given 5 ships with varying lengths:
+1. Both the red and blue players are given 5 ships with varying lengths:
 ##### Carrier - 5
 ##### Battleship - 4
 ##### Cruiser - 3
