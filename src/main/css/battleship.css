@@ -9,8 +9,8 @@
 }
 
 .shipGridsButton {
-    width: 88px;
-    height: 91px;
+    width: 175px;
+    height: 175px;
     cursor: hand;
 }
 
@@ -113,4 +113,23 @@ input {
 .square {
     width: 10px;
     height: 10px;
+}
+
+.blue {
+    background-color:blue;
+}
+.red {
+    background-color:red;
+}
+.orange {
+    background-color:orange;
+}
+.yellow {
+    background-color:yellow;
+}
+.green {
+    background-color:green;
+}
+.purple {
+    background-color:purple;
 }

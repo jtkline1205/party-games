@@ -77,6 +77,77 @@ function BattleshipCtrl() {
 
     this.startNewRound();
 
+    function generateShipGrid() {
+        let grid = [
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        ]
+
+        let gridSize = 10;   
+        let shipSize = 5;
+        placeShip(grid, gridSize, 5, 1);
+        placeShip(grid, gridSize, 4, 2);
+        placeShip(grid, gridSize, 3, 3);
+        placeShip(grid, gridSize, 3, 4);
+        placeShip(grid, gridSize, 2, 5);
+
+
+        return grid;
+    }
+
+    function placeShip(grid, gridSize, shipSize, shipColor) {
+        let direction = Math.floor(Math.random()*2);
+        let bound = gridSize-shipSize+1;
+        if (direction==0) {
+            //horizontal
+            let shipStartRow = Math.floor(Math.random()*gridSize);
+            let shipStartCol = Math.floor(Math.random()*bound);
+            let crossedShip = true;
+            while (crossedShip) {
+                crossedShip = false;
+                for(let i=0; i<shipSize; i++) {
+                    if (grid[shipStartRow][shipStartCol+i]!=0) {
+                        crossedShip = true;
+                        i=shipSize;
+                        shipStartRow = Math.floor(Math.random()*gridSize);
+                        shipStartCol = Math.floor(Math.random()*bound);
+                    }
+                }
+            }
+            for (let i=0; i<shipSize; i++) {
+                grid[shipStartRow][shipStartCol+i]=shipColor;
+            }
+        } else if (direction==1) {
+            //vertical
+            let shipStartRow = Math.floor(Math.random()*bound);
+            let shipStartCol = Math.floor(Math.random()*gridSize);
+            let crossedShip = true;
+            while (crossedShip) {
+                crossedShip = false;
+                for(let i=0; i<shipSize; i++) {
+                    if (grid[shipStartRow+i][shipStartCol]!=0) {
+                        crossedShip = true;
+                        i=shipSize;
+                        shipStartRow = Math.floor(Math.random()*bound);
+                        shipStartCol = Math.floor(Math.random()*gridSize);
+                    }
+                }
+            }
+            for (let i=0; i<shipSize; i++) {
+                grid[shipStartRow+i][shipStartCol]=shipColor;
+            }
+        }
+        return grid;
+    }
+
     function generateRowList(ctrl) {
         // let counter = 0;
         // let index = 0;
@@ -88,8 +159,24 @@ function BattleshipCtrl() {
         // ctrl.blueLeft = colorFreqs[1];
         // ctrl.firstTeam = colorNames[firstTeamIndex];
         // ctrl.currentTeam = colorNames[firstTeamIndex];
+        let grid = generateShipGrid();
         let rowList = [];
-        // rowList.push([]);
+
+        let row = 0;
+        let colors = ["blue", "red", "orange", "yellow", "green", "purple"];
+        while (row < 10) {
+            rowList.push([]);
+            let col = 0;
+            while (col < 10) {
+                rowList[row].push({
+                    "squareType":colors[grid[row][col]]
+                })
+                col++;
+            }
+            row++;
+        }
+
+
         // wordSet.forEach(function(word) {
         //     if (counter < 5) {
         //         let randomColor = Math.floor(Math.random()*4);
