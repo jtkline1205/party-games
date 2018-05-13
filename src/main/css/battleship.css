@@ -1,0 +1,116 @@
+.center {
+    margin: auto;
+    text-align: center;
+}
+
+.newRoundButton {
+    width: 88px;
+    height: 45px;
+}
+
+.shipGridsButton {
+    width: 88px;
+    height: 91px;
+    cursor: hand;
+}
+
+span {
+    padding: 3px;
+}
+
+input {
+    margin: 6px;
+}
+
+.word {
+    border-style: solid;
+    border-width: 1px;
+    cursor: hand;
+    margin: 6px;
+    padding: 5px;
+}
+
+.oceanSection {
+    border-width: 1px;
+    border-style: solid;
+    padding: 5px;
+}
+
+.clueNumberInput {
+    width: 30px;
+}
+
+.teamIcon {
+    width: 40px;
+    height: 20px;
+}
+
+.currentTeamIndicator {
+    font-size: 20px;
+}
+
+.redWins {
+    padding: 3px;
+    margin: 3px;
+    color: white;
+    background-color: red;
+}
+
+.blueWins {
+    padding: 3px;
+    margin: 3px;
+    color: white;
+    background-color: blue;
+}
+
+.gameStatus {
+    border-width: 1px;
+    border-style: solid;
+    padding: 5px;
+}
+
+.gameMessage {
+    border-width: 1px;
+    border-style: solid;
+    padding: 5px;
+}
+
+.shipGrid {
+    border-width: 1px;
+    border-style: solid;
+    padding: 5px;
+}
+
+.currentTurn {
+    padding: 5px;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.red {
+    background-color: red;
+    color: white;
+}
+
+.blue {
+    background-color: blue;
+    color: white;
+}
+
+.brown {
+    background-color: #4044007d;
+}
+
+.black {
+    background-color: #000;
+}
+
+.firstTeamIndicator {
+    width: 50px;
+    height: 10px;
+}
+
+.square {
+    width: 10px;
+    height: 10px;
+}

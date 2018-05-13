@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html ng-app="battleshipApp">
+    <head>
+        <title>Battleship</title>
+        <link rel="stylesheet" type="text/css" href="../css/battleship.css">
+        <script src='../javascript/angular.min.js'></script>
+        <script src='../javascript/battleship.js'></script>
+    </head>
+    <body>
+        <div ng-controller="BattleshipCtrl as ctrl" class="center">
+            <h1>Battleship</h1>
+            <div class="gameStatus">
+                <table class="center">
+                    <tr>
+                        <td>
+                            <button ng-click="ctrl.startNewRound()" class="newRoundButton">
+                                <span class="redWins">{{ctrl.redWins}}</span>
+                                <span class="blueWins">{{ctrl.blueWins}}</span>
+                                <br/>
+                                New Round
+                            </button>
+                        </td>
+                        <td>
+                            <button ng-click="ctrl.toggleShipGrids()" ng-hide="ctrl.showShipGrids" class="shipGridsButton">
+                                Show Ship Grids
+                            </button>
+                            <button ng-click="ctrl.toggleShipGrids()" ng-show="ctrl.showShipGrids" class="shipGridsButton">
+                                <table class="center" ng-show="ctrl.showShipGrids">
+                                    <tbody>
+                                    <tr>
+                                        <td class="firstTeamIndicator {{ctrl.firstTeam}}" colspan="10">
+                                        </td>
+                                    </tr>
+                                    <tr ng-repeat="list in ctrl.rowList">
+                                        <td ng-repeat="square in list">
+                                            <div class="square {{square.squareType}}">
+                                                <span></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+                <table class="center">
+                    <tr>
+                        <td class="teamIcon {{ctrl.currentTeam}}"></td>
+                    </tr>
+                </table>
+                <br/>
+                <!--<span class="redWins">{{ctrl.redLeft}}</span>-->
+                <!--<span class="blueWins">{{ctrl.blueLeft}}</span>-->
+                <br/>
+                {{ctrl.message}}
+            </div>
+            <div class="shipGridSection">
+                <!--<table class="shipGrid center">-->
+                    <!--<tbody>-->
+                    <!--<tr ng-repeat="list in ctrl.rowList">-->
+                        <!--<td ng-repeat="square in list">-->
+                            <!--<div ng-class="{ '{{square.team}}': clicked}" class="square" ng-click="ctrl.revealSquare(this, word)">-->
+                            <!--</div>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--</tbody>-->
+                <!--</table>-->
+            </div>
+
+        </div>
+    </body>
+</html>
