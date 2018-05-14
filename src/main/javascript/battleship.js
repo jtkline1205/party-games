@@ -7,8 +7,6 @@ function BattleshipCtrl() {
     function initializeController(ctrl) {
         ctrl.redWins = 0;
         ctrl.blueWins = 0;
-        // ctrl.redLeft = 0;
-        // ctrl.blueLeft = 0;
         ctrl.showShipGrids = false;
         ctrl.firstTeam = "";
         ctrl.currentTeam = "";
@@ -31,53 +29,79 @@ function BattleshipCtrl() {
         }
     }
 
-    function resolveGuess(word, ctrl) {
-        if (word.team == 'red') {
-            ctrl.redLeft--;
-            if (ctrl.currentTeam == 'red') {
-                ctrl.guessesRemaining--;
-            } else {
-                switchTeams(ctrl);
-            }
-        } else if (word.team == 'blue') {
-            ctrl.blueLeft--;
-            if (ctrl.currentTeam =='blue') {
-                ctrl.guessesRemaining--;
-            } else {
-                switchTeams(ctrl);
-            }
-        } else if (word.team == 'brown') {
-            switchTeams(ctrl);
-        } else if (word.team == 'black') {
-            if (ctrl.currentTeam == 'red') {
-                ctrl.blueWins++;
-                ctrl.message = "Blue wins since red guessed the black card!";
-            } else if (ctrl.currentTeam == 'blue') {
-                ctrl.redWins++;
-                ctrl.message = "Red wins since blue guessed the black card!";
-            }
-            ctrl.startNewRound();
-        }
-        if (ctrl.redLeft == 0) {
-            ctrl.redWins++;
-            ctrl.startNewRound();
-            ctrl.message = "Red wins by guessing all words!";
-        } else if (ctrl.blueLeft == 0) {
-            ctrl.blueWins++;
-            ctrl.startNewRound();
-            ctrl.message = "Blue wins by guessing all words!";
-        } else if (ctrl.guessesRemaining == 0) {
-            switchTeams(ctrl);
-        }
-    }
+    // function resolveGuess(word, ctrl) {
+    //     if (word.team == 'red') {
+    //         ctrl.redLeft--;
+    //         if (ctrl.currentTeam == 'red') {
+    //             ctrl.guessesRemaining--;
+    //         } else {
+    //             switchTeams(ctrl);
+    //         }
+    //     } else if (word.team == 'blue') {
+    //         ctrl.blueLeft--;
+    //         if (ctrl.currentTeam =='blue') {
+    //             ctrl.guessesRemaining--;
+    //         } else {
+    //             switchTeams(ctrl);
+    //         }
+    //     } else if (word.team == 'brown') {
+    //         switchTeams(ctrl);
+    //     } else if (word.team == 'black') {
+    //         if (ctrl.currentTeam == 'red') {
+    //             ctrl.blueWins++;
+    //             ctrl.message = "Blue wins since red guessed the black card!";
+    //         } else if (ctrl.currentTeam == 'blue') {
+    //             ctrl.redWins++;
+    //             ctrl.message = "Red wins since blue guessed the black card!";
+    //         }
+    //         ctrl.startNewRound();
+    //     }
+    //     if (ctrl.redLeft == 0) {
+    //         ctrl.redWins++;
+    //         ctrl.startNewRound();
+    //         ctrl.message = "Red wins by guessing all words!";
+    //     } else if (ctrl.blueLeft == 0) {
+    //         ctrl.blueWins++;
+    //         ctrl.startNewRound();
+    //         ctrl.message = "Blue wins by guessing all words!";
+    //     } else if (ctrl.guessesRemaining == 0) {
+    //         switchTeams(ctrl);
+    //     }
+    // }
 
     this.startNewRound = function() {
-        this.rowList = generateRowList(this);
+        this.player1RowList = generateRowList(this, 10);
+        this.player2RowList = generateRowList(this, 10);
+    }
+
+    function generateRowList(ctrl, gridSize) {
+        // let firstTeamIndex = Math.floor(Math.random()*2);
+        // colorFreqs[firstTeamIndex]++;
+        // ctrl.firstTeam = colorNames[firstTeamIndex];
+        // ctrl.currentTeam = colorNames[firstTeamIndex];
+        let playerGrid = generateShipGrid(gridSize);
+        let playerRowList = [];
+        let colors = ["blue", "red", "orange", "yellow", "green", "purple"];
+
+        let row = 0;
+        while (row < gridSize) {
+            playerRowList.push([]);
+            let col = 0;
+            while (col < gridSize) {
+                playerRowList[row].push({
+                    "squareType":colors[playerGrid[row][col]]
+                })
+                col++;
+            }
+            row++;
+        }
+
+        return playerRowList;
     }
 
     this.startNewRound();
 
-    function generateShipGrid() {
+    function generateShipGrid(gridSize) {
         let grid = [
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -90,16 +114,11 @@ function BattleshipCtrl() {
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         ]
-
-        let gridSize = 10;   
-        let shipSize = 5;
         placeShip(grid, gridSize, 5, 1);
         placeShip(grid, gridSize, 4, 2);
         placeShip(grid, gridSize, 3, 3);
         placeShip(grid, gridSize, 3, 4);
         placeShip(grid, gridSize, 2, 5);
-
-
         return grid;
     }
 
@@ -148,56 +167,7 @@ function BattleshipCtrl() {
         return grid;
     }
 
-    function generateRowList(ctrl) {
-        // let counter = 0;
-        // let index = 0;
-        // let colorFreqs = [8, 8, 7, 1];
-        // let colorNames = ["red", "blue", "brown", "black"];
-        // let firstTeamIndex = Math.floor(Math.random()*2);
-        // colorFreqs[firstTeamIndex]++;
-        // ctrl.redLeft = colorFreqs[0];
-        // ctrl.blueLeft = colorFreqs[1];
-        // ctrl.firstTeam = colorNames[firstTeamIndex];
-        // ctrl.currentTeam = colorNames[firstTeamIndex];
-        let grid = generateShipGrid();
-        let rowList = [];
-
-        let row = 0;
-        let colors = ["blue", "red", "orange", "yellow", "green", "purple"];
-        while (row < 10) {
-            rowList.push([]);
-            let col = 0;
-            while (col < 10) {
-                rowList[row].push({
-                    "squareType":colors[grid[row][col]]
-                })
-                col++;
-            }
-            row++;
-        }
-
-
-        // wordSet.forEach(function(word) {
-        //     if (counter < 5) {
-        //         let randomColor = Math.floor(Math.random()*4);
-        //         while (colorFreqs[randomColor] == 0) {
-        //             randomColor = Math.floor(Math.random()*4);
-        //         }
-        //         colorFreqs[randomColor]--;
-        //         let team=colorNames[randomColor];
-        //         rowList[index].push({
-        //             "word" : word,
-        //             "team" : team
-        //         });
-        //         counter = (counter+1)%5;
-        //     }
-        //     if (counter==0) {
-        //         index++;
-        //         rowList.push([]);
-        //     }
-        // }, this);
-        return rowList;
-    }
+    
 
 }
 

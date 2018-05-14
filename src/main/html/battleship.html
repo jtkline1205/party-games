@@ -27,17 +27,38 @@
                             <button ng-click="ctrl.toggleShipGrids()" ng-show="ctrl.showShipGrids" class="shipGridsButton">
                                 <table class="center" ng-show="ctrl.showShipGrids">
                                     <tbody>
-                                    <!--<tr>-->
-                                        <!--<td class="firstTeamIndicator {{ctrl.firstTeam}}" colspan="10">-->
-                                        <!--</td>-->
-                                    <!--</tr>-->
-                                    <tr ng-repeat="list in ctrl.rowList">
-                                        <td ng-repeat="square in list">
-                                            <div class="square {{square.squareType}}">
-                                                <span></span>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                        <tr>
+                                            <td>
+                                                <!--<tr>-->
+                                                    <!--<td class="firstTeamIndicator {{ctrl.firstTeam}}" colspan="10">-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                                <table>
+                                                    <tbody>
+                                                <tr ng-repeat="row in ctrl.player1RowList">
+                                                    <td ng-repeat="square in row">
+                                                        <div class="square {{square.squareType}}">
+                                                            <span></span>
+                                                        </div>
+                                                    </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td>
+                                                <table>
+                                                    <tbody>
+                                                    <tr ng-repeat="row in ctrl.player2RowList">
+                                                        <td ng-repeat="square in row">
+                                                            <div class="square {{square.squareType}}">
+                                                                <span></span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </button>
