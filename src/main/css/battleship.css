@@ -133,3 +133,12 @@ input {
 .purple {
     background-color:purple;
 }
+.hitShip {
+    background-color:red;
+}
+.missedShip {
+    background-color:orange;
+}
+.notFiredOn {
+    background-color:grey;
+}

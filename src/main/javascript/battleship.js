@@ -9,7 +9,7 @@ function BattleshipCtrl() {
         ctrl.blueWins = 0;
         ctrl.showShipGrids = false;
         ctrl.firstTeam = "";
-        ctrl.currentTeam = "";
+        ctrl.currentTeam = "blue";
         ctrl.message = "Welcome to Battleship";
     }
 
@@ -89,7 +89,8 @@ function BattleshipCtrl() {
             let col = 0;
             while (col < gridSize) {
                 playerRowList[row].push({
-                    "squareType":colors[playerGrid[row][col]]
+                    "type":colors[playerGrid[row][col]],
+                    "status":"notFiredOn"
                 })
                 col++;
             }
@@ -97,6 +98,16 @@ function BattleshipCtrl() {
         }
 
         return playerRowList;
+    }
+
+    this.fireOn = function($scope, square) {
+        if (square.status=="notFiredOn") {
+            if (square.type != "blue") {
+                square.status = "hitShip";
+            } else {
+                square.status = "missedShip";
+            }
+        }
     }
 
     this.startNewRound();
