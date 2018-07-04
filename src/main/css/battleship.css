@@ -4,13 +4,13 @@
 }
 
 .newRoundButton {
-    width: 88px;
+    width: 120px;
     height: 45px;
 }
 
 .shipGridsButton {
-    width: 325px;
-    height: 175px;
+    width: 425px;
+    height: 200px;
     cursor: hand;
 }
 
@@ -111,8 +111,8 @@ input {
 }
 
 .square {
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
 }
 
 .blue {

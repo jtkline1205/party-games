@@ -77,6 +77,7 @@
                             <td>
                                 <table>
                                     <tbody>
+                                        <tr><span class="red"></span></tr>
                                         <tr ng-repeat="row in ctrl.player1RowList">
                                             <td ng-repeat="square in row">
                                                 <div class="square {{square.status}}" ng-click="ctrl.fireOn(this, square)">
@@ -90,9 +91,10 @@
                             <td>
                                 <table>
                                     <tbody>
-                                        <tr ng-repeat="row in ctrl.player2RowList">
+                                    <tr><span class="blue"></span></tr>
+                                    <tr ng-repeat="row in ctrl.player2RowList">
                                             <td ng-repeat="square in row">
-                                                <div class="square {{square.status}}">
+                                                <div class="square {{square.status}}" ng-click="ctrl.fireOn(this, square)">
                                                     <span></span>
                                                 </div>
                                             </td>
@@ -103,18 +105,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <!--<table class="shipGrid center">-->
-                    <!--<tbody>-->
-                    <!--<tr ng-repeat="list in ctrl.rowList">-->
-                        <!--<td ng-repeat="square in list">-->
-                            <!--<div ng-class="{ '{{square.team}}': clicked}" class="square" ng-click="ctrl.revealSquare(this, word)">-->
-                            <!--</div>-->
-                        <!--</td>-->
-                    <!--</tr>-->
-                    <!--</tbody>-->
-                <!--</table>-->
             </div>
-
         </div>
     </body>
 </html>
