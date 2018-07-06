@@ -9,17 +9,72 @@
     <body>
         <div ng-controller="BattleshipCtrl as ctrl" class="center">
             <h1>Battleship</h1>
+            {{ctrl.message}}
+            <br/>
+            <br/>
+            <button ng-click="ctrl.startNewRound()" class="newRoundButton">
+                <span class="player1Wins">{{ctrl.player1Wins}}</span>
+                <span class="player2Wins">{{ctrl.player2Wins}}</span>
+                <br/>
+                <br/>
+                New Round
+            </button>
+            <br/>
+            <br/>
+            <span>Current Turn: Player {{ctrl.currentTeam}}</span>
+            <div class="shipGridSection">
+                <table class="center">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <table>
+                                    <tr ng-repeat="ship in ctrl.player1Navy.ships">
+                                        <td class="{{ship.status}}">{{ship.name}} {{ship.originalLength}}</td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td>
+                                <table>
+                                    <tbody>
+                                        <tr><span class="red flag">Player 1 Navy</span></tr>
+                                        <tr ng-repeat="row in ctrl.player1RowList">
+                                            <td ng-repeat="square in row">
+                                                <div class="square {{square.status}}" ng-click="ctrl.fireOn(square)">
+                                                    <span></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td>
+                                <table>
+                                    <tbody>
+                                    <tr><span class="blue flag">Player 2 Navy</span></tr>
+                                    <tr ng-repeat="row in ctrl.player2RowList">
+                                            <td ng-repeat="square in row">
+                                                <div class="square {{square.status}}" ng-click="ctrl.fireOn(square)">
+                                                    <span></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td>
+                                <table>
+                                    <tr ng-repeat="ship in ctrl.player2Navy.ships">
+                                        <td class="{{ship.status}}">{{ship.name}} {{ship.originalLength}}</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <div class="gameStatus">
                 <table class="center">
                     <tr>
-                        <td>
-                            <button ng-click="ctrl.startNewRound()" class="newRoundButton">
-                                <span class="redWins">{{ctrl.redWins}}</span>
-                                <span class="blueWins">{{ctrl.blueWins}}</span>
-                                <br/>
-                                New Round
-                            </button>
-                        </td>
                         <td>
                             <button ng-click="ctrl.toggleShipGrids()" ng-hide="ctrl.showShipGrids" class="shipGridsButton">
                                 Show Ship Grids
@@ -27,83 +82,39 @@
                             <button ng-click="ctrl.toggleShipGrids()" ng-show="ctrl.showShipGrids" class="shipGridsButton">
                                 <table class="center" ng-show="ctrl.showShipGrids">
                                     <tbody>
-                                        <tr>
-                                            <td>
-                                                <table>
-                                                    <tbody>
-                                                        <tr ng-repeat="row in ctrl.player1RowList">
-                                                            <td ng-repeat="square in row">
-                                                                <div class="square {{square.type}}">
-                                                                    <span></span>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                            <td>
-                                                <table>
-                                                    <tbody>
-                                                        <tr ng-repeat="row in ctrl.player2RowList">
-                                                            <td ng-repeat="square in row">
-                                                                <div class="square {{square.type}}">
-                                                                    <span></span>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <td>
+                                            <table>
+                                                <tbody>
+                                                <tr ng-repeat="row in ctrl.player1RowList">
+                                                    <td ng-repeat="square in row">
+                                                        <div class="smallSquare {{square.color}}">
+                                                            <span></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table>
+                                                <tbody>
+                                                <tr ng-repeat="row in ctrl.player2RowList">
+                                                    <td ng-repeat="square in row">
+                                                        <div class="smallSquare {{square.color}}">
+                                                            <span></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </button>
                         </td>
                     </tr>
-                </table>
-                <br/>
-                <table class="center">
-                    <tr>
-                        <td class="teamIcon {{ctrl.currentTeam}}"></td>
-                    </tr>
-                </table>
-                <br/>
-                {{ctrl.message}}
-            </div>
-            <div class="shipGridSection">
-                <table class="center">
-                    <tbody>
-                        <tr>
-                            <td>
-                                <table>
-                                    <tbody>
-                                        <tr><span class="red"></span></tr>
-                                        <tr ng-repeat="row in ctrl.player1RowList">
-                                            <td ng-repeat="square in row">
-                                                <div class="square {{square.status}}" ng-click="ctrl.fireOn(this, square)">
-                                                    <span></span>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </td>
-                            <td>
-                                <table>
-                                    <tbody>
-                                    <tr><span class="blue"></span></tr>
-                                    <tr ng-repeat="row in ctrl.player2RowList">
-                                            <td ng-repeat="square in row">
-                                                <div class="square {{square.status}}" ng-click="ctrl.fireOn(this, square)">
-                                                    <span></span>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </td>
-                        </tr>
-                    </tbody>
                 </table>
             </div>
         </div>

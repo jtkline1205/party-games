@@ -4,59 +4,30 @@
 }
 
 .newRoundButton {
-    width: 120px;
-    height: 45px;
+    width: 180px;
+    height: 80px;
+    font-size: 20px;
 }
 
 .shipGridsButton {
-    width: 425px;
-    height: 200px;
+    width: 325px;
+    height: 170px;
     cursor: hand;
+    font-size: 20px;
 }
 
 span {
     padding: 3px;
 }
 
-input {
-    margin: 6px;
-}
-
-.word {
-    border-style: solid;
-    border-width: 1px;
-    cursor: hand;
-    margin: 6px;
-    padding: 5px;
-}
-
-.oceanSection {
-    border-width: 1px;
-    border-style: solid;
-    padding: 5px;
-}
-
-.clueNumberInput {
-    width: 30px;
-}
-
-.teamIcon {
-    width: 40px;
-    height: 20px;
-}
-
-.currentTeamIndicator {
-    font-size: 20px;
-}
-
-.redWins {
+.player1Wins {
     padding: 3px;
     margin: 3px;
     color: white;
     background-color: red;
 }
 
-.blueWins {
+.player2Wins {
     padding: 3px;
     margin: 3px;
     color: white;
@@ -69,50 +40,20 @@ input {
     padding: 5px;
 }
 
-.gameMessage {
-    border-width: 1px;
-    border-style: solid;
-    padding: 5px;
-}
-
 .shipGrid {
     border-width: 1px;
     border-style: solid;
     padding: 5px;
 }
 
-.currentTurn {
-    padding: 5px;
-    border-width: 1px;
-    border-style: solid;
-}
-
-.red {
-    background-color: red;
-    color: white;
-}
-
-.blue {
-    background-color: blue;
-    color: white;
-}
-
-.brown {
-    background-color: #4044007d;
-}
-
-.black {
-    background-color: #000;
-}
-
-.firstTeamIndicator {
-    width: 50px;
-    height: 10px;
-}
-
 .square {
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
+}
+
+.smallSquare {
+    width: 10px;
+    height: 10px;
 }
 
 .blue {
@@ -133,12 +74,34 @@ input {
 .purple {
     background-color:purple;
 }
-.hitShip {
+
+.hitPlayer1Ship {
     background-color:red;
 }
-.missedShip {
-    background-color:orange;
+
+.hitPlayer2Ship {
+    background-color:blue;
 }
+
+.missedShip {
+    background-color:darkgrey;
+}
+
 .notFiredOn {
-    background-color:grey;
+    background-color:lightblue;
+}
+
+.flag {
+    color: white;
+    text-align: center;
+}
+
+.active {
+    background-color:green;
+    color:white;
+}
+
+.sunk {
+    background-color:darkgrey;
+    color:white;
 }
