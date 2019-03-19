@@ -5,6 +5,7 @@ These games are available:
 
 1. Codenames - Angular Application
 2. Battleship - Angular Application
+3. Tencup - Java Application
 
 These games are in development:
 
@@ -12,6 +13,7 @@ These games are in development:
 2. Lords of Hellas
 3. Werewolf
 
+The end goal is to have all of these games written without Java and available to play on a web browser.
 
 # codenames
 
