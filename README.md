@@ -1,13 +1,16 @@
 # party-games
 A collection of games to play with friends.
+
 These games are available:
-Codenames - Angular Application
-Battleship - Angular Application
+
+1. Codenames - Angular Application
+2. Battleship - Angular Application
 
 These games are in development:
-Seven Wonders
-Lords of Hellas
-Werewolf
+
+1. Seven Wonders
+2. Lords of Hellas
+3. Werewolf
 
 
 # codenames
