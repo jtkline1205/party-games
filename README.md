@@ -1,10 +1,13 @@
 # party-games
 A collection of games to play with friends.
 
+Start the application by running 
+yarn start
+
 These games are available:
 
 1. Codenames - Angular Application
-2. Battleship - Angular Application
+2. Battleship - React Application
 3. Tencup - Java Application
 
 These games are in development:
