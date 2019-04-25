@@ -1,0 +1,125 @@
+.center {
+    margin: auto;
+    text-align: center;
+}
+
+.newRoundButton {
+    width: 180px;
+    height: 80px;
+    font-size: 20px;
+}
+
+.shipGridsButton {
+    width: 325px;
+    height: 170px;
+    cursor: hand;
+    font-size: 20px;
+}
+
+span {
+    padding: 3px;
+}
+
+.player1Wins {
+    padding: 3px;
+    margin: 3px;
+    color: white;
+    background-color: red;
+}
+
+.player2Wins {
+    padding: 3px;
+    margin: 3px;
+    color: white;
+    background-color: blue;
+}
+
+.gameStatus {
+    border-width: 1px;
+    border-style: solid;
+    padding: 5px;
+}
+
+.shipGrid {
+    border-width: 1px;
+    border-style: solid;
+    padding: 5px;
+}
+
+.blue {
+    background-color:blue;
+    width: 10px;
+    height: 10px;
+}
+.red {
+    background-color:red;
+    width: 10px;
+    height: 10px;
+}
+.orange {
+    background-color:orange;
+    width: 10px;
+    height: 10px;
+}
+.yellow {
+    background-color:yellow;
+    width: 10px;
+    height: 10px;
+}
+.green {
+    background-color:green;
+    width: 10px;
+    height: 10px;
+}
+.purple {
+    background-color:purple;
+    width: 10px;
+    height: 10px;
+}
+
+.hitPlayer1Ship {
+    background-color:red;
+    width: 20px;
+    height: 20px;
+}
+
+.hitPlayer2Ship {
+    background-color:blue;
+    width: 20px;
+    height: 20px;
+}
+
+.missedShip {
+    background-color:darkgrey;
+    width: 20px;
+    height: 20px;
+}
+
+.notFiredOn {
+    background-color:lightblue;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.redFlag {
+    color: white;
+    text-align: center;
+    background-color:red;
+}
+
+.blueFlag {
+    color: white;
+    text-align: center;
+    background-color:blue;
+}
+
+.active {
+    background-color:green;
+    color:white;
+}
+
+.sunk {
+    background-color:darkgrey;
+    color:white;
+}
