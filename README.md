@@ -9,11 +9,14 @@ These games are available:
 
 These games are in development:
 
-1. Seven Wonders
-2. Lords of Hellas
-3. Werewolf
+1. Minesweeper
+2. Seven Wonders
+3. Lords of Hellas
+4. Werewolf
 
 The end goal is to have all of these games written without Java and available to play on a web browser.
+
+The games will be written solely by me, John Kline, without any external code or logic provided, other than the rules of each game.
 
 # codenames
 
