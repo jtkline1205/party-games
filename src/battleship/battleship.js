@@ -133,7 +133,7 @@ function ShipGridRevealed(props) {
                             {
                                 row.map(function(square, squareIndex) {
                                     return <td key={squareIndex}>
-                                        {square.color=="blue" && <ColoredSquare className={style.blue}/>}
+                                        {square.color=="lightBlue" && <ColoredSquare className={style.lightBlue}/>}
                                         {square.color=="red" && <ColoredSquare className={style.red}/>}
                                         {square.color=="orange" && <ColoredSquare className={style.orange}/>}
                                         {square.color=="yellow" && <ColoredSquare className={style.yellow}/>}
@@ -264,7 +264,7 @@ export default class Battleship extends React.Component {
         let playerGrid = this.generateShipGrid(gridSize, navy);
         this.placeNavy(navy, playerGrid);
         let playerRowList = [];
-        let colors = ["blue", "red", "orange", "yellow", "green", "purple"];
+        let colors = ["lightBlue", "red", "orange", "yellow", "green", "purple"];
 
         let row = 0;
         while (row < gridSize) {
