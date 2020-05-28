@@ -1,6 +1,7 @@
 import React from 'react';
 import Battleship from '../battleship'
 import Minesweeper from '../minesweeper'
+import Codenames from '../codenames'
 import style from './app.css'
 
 export default class App extends React.Component {
@@ -11,6 +12,7 @@ export default class App extends React.Component {
 
     render() {
         return <div className={style.container}>
+            <Codenames/>
             <Battleship/>
             <Minesweeper/>
             <hr/>

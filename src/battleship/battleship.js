@@ -393,7 +393,7 @@ export default class Battleship extends React.Component {
                     <tr>
                         <td>
                             {
-                                this.state.showShipGrids && <button
+                                this.state.showShipGrids && false && <button
                                     onClick={this.toggleShipGrids}
                                     className={style.shipGridsButton}
                                 >
