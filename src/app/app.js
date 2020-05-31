@@ -12,10 +12,15 @@ export default class App extends React.Component {
 
     render() {
         return <div className={style.container}>
-            <Codenames/>
-            <Battleship/>
-            <Minesweeper/>
-            <hr/>
+            <div className={style.gameContainer}>
+                <Codenames/>
+            </div>
+            <div className={style.gameContainer}>
+                <Battleship/>
+            </div>
+            <div className={style.gameContainer}>
+                <Minesweeper/>
+            </div>
         </div>
     }
 }

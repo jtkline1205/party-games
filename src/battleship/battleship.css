@@ -54,8 +54,8 @@ span {
 
 .blue {
     background-color:blue;
-    width: 10px;
-    height: 10px;
+    width: 5px;
+    height: 5px;
 }
 .red {
     background-color:red;
@@ -85,26 +85,26 @@ span {
 
 .hitPlayer1Ship {
     background-color:red;
-    width: 20px;
-    height: 20px;
+    width: 10px;
+    height: 10px;
 }
 
 .hitPlayer2Ship {
     background-color:blue;
-    width: 20px;
-    height: 20px;
+    width: 10px;
+    height: 10px;
 }
 
 .missedShip {
     background-color:darkgrey;
-    width: 20px;
-    height: 20px;
+    width: 10px;
+    height: 10px;
 }
 
 .notFiredOn {
     background-color:lightblue;
-    width: 20px;
-    height: 20px;
+    width: 10px;
+    height: 10px;
     cursor: pointer;
 }
 

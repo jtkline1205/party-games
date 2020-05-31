@@ -47,8 +47,7 @@ function ShipGridSquare(props) {
                  () => {
                      if (props.square.status == "notFiredOn" && props.square.team != props.battleship.state.currentTeam) {
                          if (props.square.shipNumber != 0) {
-                             //this.message = "The shot connected!";
-                             console.log("The shot connected!");
+                             props.battleship.updateMessage("The shot connected!");
                              if (props.square.team == 1) {
                                  console.log("updating square status to hitPlayer1Ship");
                                  props.square.status = "hitPlayer1Ship";
@@ -56,7 +55,7 @@ function ShipGridSquare(props) {
                                  ship.length--;
                                  if (ship.length == 0) {
                                      ship.status = "sunk";
-                                     // checkNavyStatus(this.player1Navy.ships, 1);
+                                     props.battleship.checkNavyStatus(props.battleship.state.player1Navy.ships, 1)
                                  }
                              } else {
                                  console.log("updating square status to hitPlayer2Ship");
@@ -65,24 +64,21 @@ function ShipGridSquare(props) {
                                  ship.length--;
                                  if (ship.length == 0) {
                                      ship.status = "sunk";
-                                     // checkNavyStatus(this.player2Navy.ships, 2);
+                                     props.battleship.checkNavyStatus(props.battleship.state.player2Navy.ships, 2)
                                  }
                              }
                          } else {
                              props.square.status = "missedShip";
-                             // this.message = "The shot missed.";
-                             console.log("The shot missed.");
+                             props.battleship.updateMessage("The shot missed.");
                          }
                          if (props.battleship.state.currentTeam == 1) {
                              props.battleship.setState({
                                  currentTeam: 2
                              });
-                             console.log("team switched to 2");
                          } else {
                              props.battleship.setState({
                                  currentTeam: 1
                              });
-                             console.log("team switched to 1");
                          }
                      }
                  }
@@ -161,82 +157,56 @@ function ShipGridRevealedTable(props) {
 }
 
 export default class Battleship extends React.Component {
+
+    createNewNavy() {
+        return {
+            ships: [
+                {
+                    name:"Aircraft Carrier",
+                    originalLength:5,
+                    length:5,
+                    status:"active"
+                },
+                {
+                    name:"Battleship",
+                    originalLength:4,
+                    length:4,
+                    status:"active"
+                },
+                {
+                    name:"Submarine",
+                    originalLength:3,
+                    length:3,
+                    status:"active"
+                },
+                {
+                    name:"Destroyer",
+                    originalLength:3,
+                    length:3,
+                    status:"active"
+                },
+                {
+                    name:"Patrol Boat",
+                    originalLength:2,
+                    length:2,
+                    status:"active"
+                }
+            ]
+        };
+    }
+
     constructor(props) {
         super(props);
+        let redNavy = this.createNewNavy();
+        let blueNavy = this.createNewNavy();
         this.state = {
             message: "Welcome to Battleship",
             player1Wins: 0,
             player2Wins: 0,
             currentTeam: 1,
             showShipGrids: false,
-            player1Navy: {
-                ships: [
-                    {
-                        name:"Aircraft Carrier",
-                        originalLength:5,
-                        length:5,
-                        status:"active"
-                    },
-                    {
-                        name:"Battleship",
-                        originalLength:4,
-                        length:4,
-                        status:"active"
-                    },
-                    {
-                        name:"Submarine",
-                        originalLength:3,
-                        length:3,
-                        status:"active"
-                    },
-                    {
-                        name:"Destroyer",
-                        originalLength:3,
-                        length:3,
-                        status:"active"
-                    },
-                    {
-                        name:"Patrol Boat",
-                        originalLength:2,
-                        length:2,
-                        status:"active"
-                    }
-                ]
-            },
-            player2Navy: {
-                ships: [
-                    {
-                        name:"Aircraft Carrier",
-                        originalLength:5,
-                        length:5,
-                        status:"active"
-                    },
-                    {
-                        name:"Battleship",
-                        originalLength:4,
-                        length:4,
-                        status:"active"
-                    },
-                    {
-                        name:"Submarine",
-                        originalLength:3,
-                        length:3,
-                        status:"active"
-                    },
-                    {
-                        name:"Destroyer",
-                        originalLength:3,
-                        length:3,
-                        status:"active"
-                    },
-                    {
-                        name:"Patrol Boat",
-                        originalLength:2,
-                        length:2,
-                        status:"active"
-                    }
-                ]
-            },
+            player1Navy: redNavy,
+            player2Navy: blueNavy,
             player1RowList:[],
             player2RowList:[]
         };
@@ -245,6 +215,8 @@ export default class Battleship extends React.Component {
         this.generateShipGrid = this.generateShipGrid.bind(this);
         this.placeNavy = this.placeNavy.bind(this);
         this.toggleShipGrids = this.toggleShipGrids.bind(this);
+        this.checkNavyStatus = this.checkNavyStatus.bind(this);
+        this.updateMessage = this.updateMessage.bind(this);
     }
 
     toggleShipGrids() {
@@ -254,9 +226,13 @@ export default class Battleship extends React.Component {
     }
 
     startNewRound() {
+        let redNavy = this.createNewNavy();
+        let blueNavy = this.createNewNavy();
         this.setState((state) => ({
-            player1RowList: this.generateRowList(10, state.player1Navy, 1),
-            player2RowList: this.generateRowList(10, state.player2Navy, 2)
+            player1Navy: redNavy,
+            player2Navy: blueNavy,
+            player1RowList: this.generateRowList(10, redNavy, 1),
+            player2RowList: this.generateRowList(10, blueNavy, 2)
         }));
     }
 
@@ -335,11 +311,28 @@ export default class Battleship extends React.Component {
         for (let i=0; i<ships.length; i++) {
             let ship = ships[i];
             if (ship.status=="active") {
-                i=ships.length;
-                return "A ship was sunk, but the game continues.";
+                this.updateMessage("A ship was sunk, but the game continues.");
+                return;
             }
         }
-        return "Player " + playerNumber + " Wins!";
+        if (playerNumber==2) {
+            this.setState((state) => ({
+                message: "Player 1 Wins!",
+                player1Wins: state.player1Wins+1
+            }))
+        } else {
+            this.setState((state) => ({
+                message: "Player 2 Wins!",
+                player2Wins: state.player2Wins+1
+            }))
+        }
+        this.startNewRound();
+    }
+
+    updateMessage(message) {
+        this.setState((state) => ({
+            message: message
+        }))
     }
 
     componentDidMount() {
@@ -349,7 +342,6 @@ export default class Battleship extends React.Component {
     render() {
         return <div className={style.center}>
             <h5>Battleship</h5>
-            {this.state.message}
             <br/>
             <button className={style.newRoundButton} onClick={this.startNewRound}>
                 <span className={style.player1Wins}>{this.state.player1Wins}</span>
@@ -358,6 +350,8 @@ export default class Battleship extends React.Component {
                 <br/>
                 New Round
             </button>
+            <br/>
+            {this.state.message}
             <br/>
             <br/>
             <span className={this.state.currentTeam==1 ? style.redFlag: style.blueFlag}>Current Turn: Player {this.state.currentTeam}</span>
@@ -393,7 +387,7 @@ export default class Battleship extends React.Component {
                     <tr>
                         <td>
                             {
-                                this.state.showShipGrids && false && <button
+                                this.state.showShipGrids && <button
                                     onClick={this.toggleShipGrids}
                                     className={style.shipGridsButton}
                                 >
