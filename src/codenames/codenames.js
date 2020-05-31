@@ -342,33 +342,34 @@ export default class Codenames extends React.Component {
 
 	generateRowListFromWordSet(wordSet, colorFreqs, colorNames) {
 		console.log("Generating row list");
-		let counter = 0;
-		let index = 0;
-		wordSet = Array.from(wordSet);
 		let rowList = [];
-		rowList.push([]);
+		wordSet = Array.from(wordSet);
+
+		let wordMap = new Map();
 		for (let i=0; i<wordSet.length; i++) {
-			if (counter < 5) {
-				let randomColor = Math.floor(Math.random() * 4);
-				while (colorFreqs[randomColor] == 0) {
-					randomColor = Math.floor(Math.random() * 4);
-				}
-				colorFreqs[randomColor]--;
-				let team = colorNames[randomColor];
-				let wordObject = {"word": wordSet[i],
-				"team": team, 
-				"clicked": false};
-				rowList[index].push(wordObject);
-				counter = (counter + 1) % 5;
+			let randomColor = Math.floor(Math.random() * 4);
+			while (colorFreqs[randomColor] == 0) {
+				randomColor = Math.floor(Math.random() * 4);
 			}
-			if (counter == 0) {
-				index++;
-				// if (i!=wordSet.length -1) {
-					rowList.push([]);
-				// }
+			colorFreqs[randomColor]--;
+			let wordObject = {
+				"word": wordSet[i],
+				"team": colorNames[randomColor], 
+				"clicked": false
+			};
+			let randomIndex = Math.floor(Math.random() * wordSet.length);
+			while (wordMap.get(randomIndex) != undefined) {
+				randomIndex = Math.floor(Math.random() * wordSet.length);
+			}
+			wordMap.set(randomIndex, wordObject);
+		}
+		for (let i=0; i<5; i++) {
+			rowList.push([]);
+			for (let j=0; j<5; j++) {
+				rowList[i].push(wordMap.get((i*5)+j));
 			}
 		}
-		
+
 		return rowList;
 	}
 
